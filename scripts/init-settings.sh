@@ -6,7 +6,7 @@
 # Blog: https://mlapp.cn
 #=================================================
 #--------------------------------------------------------
-#   If you use some codes frome here, please give credit to www.helmiau.com
+#   If you use some codes frome here, please give credit to https://github.com/cr4r/
 #--------------------------------------------------------
 
 # Disable autostart by default for some packages
@@ -23,22 +23,22 @@ uci commit
 sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
 
 #-----------------------------------------------------------------------------
-#   Start of @helmiau additionals menu
+#   Start of @cr4r additionals menu
 #-----------------------------------------------------------------------------
 
 # Set Argon theme to light on first boot
 uci set argon.@global[0].mode='light'
 
-# Set hostname to HelmiWrt
-uci set system.@system[0].hostname='HelmiWrt'
+# Set hostname to CF-WRT
+uci set system.@system[0].hostname='CFWRT'
 
 # Set Timezone to Asia/Jakarta
 uci set system.@system[0].timezone='WIB-7'
 uci set system.@system[0].zonename='Asia/Jakarta'
 uci commit system
 
-# Set default wifi name to HelmiWrt
-sed -i "s#option ssid 'OpenWrt'#option ssid 'HelmiWrt'#iIg" /etc/config/wireless
+# Set default wifi name to CFWRT
+sed -i "s#option ssid 'OpenWrt'#option ssid 'CFWRT'#iIg" /etc/config/wireless
 
 # Add shadowsocksr shortcut
 chmod +x /bin/ssr
@@ -77,21 +77,21 @@ chmod +x /usr/bin/luci-app-atinout
 # Fix for xderm mini gui if trojan is not installed
 ln -sf /usr/sbin/trojan /usr/bin/trojan
 
-# HelmiWrt Patches
-chmod +x /bin/helmiwrt
-helmiwrt
+# CFWRT Patches
+chmod +x /bin/cfwrt
+cfwrt
 
-# HelmiWrt Patches
-if ! grep -q "helmiwrt" /etc/rc.local; then
+# CFWRT Patches
+if ! grep -q "cfwrt" /etc/rc.local; then
 	sed -i 's#exit 0#\n#g' /etc/rc.local
 	cat << 'EOF' >> /etc/rc.local
 
-chmod +x /bin/helmiwrt
-/bin/helmiwrt
+chmod +x /bin/cfwrt
+/bin/cfwrt
 exit 0
 EOF
-	logger "  helmilog : helmipatch already applied to on-boot..."
-	echo -e "  helmilog : helmipatch already applied to on-boot..."
+	logger "  cflog : cfpatch sudah diterapkan saat boot..."
+	echo -e "  cflog : cfpatch sudah diterapkan saat boot..."
 fi
 
 # Set default theme to luci-theme-argon
@@ -116,8 +116,8 @@ chmod +x /bin/default-theme
 default-theme
 
 # Add my Load Balance settings
-chmod +x /bin/helmilb
-#helmilb
+chmod +x /bin/cflb
+#cflb
 
 # Add clashcs script : OpenClash Core switcher
 chmod +x /bin/ocsm
@@ -141,22 +141,22 @@ sed -i "s#option enabled.*#option enabled '1'#g" /etc/config/v2raya
 /usr/sbin/openvpn --mktun --dev tun1
 
 # Apply your own customization on boot features
-if grep -q "helmiwrt.sh" /boot/helmiwrt.sh; then
-	logger "  helmilog : detected helmiwrt.sh boot script, running script..."
-	echo -e "  helmilog : detected helmiwrt.sh boot script, running script..."
-	chmod +x /boot/helmiwrt.sh
-	./boot/helmiwrt.sh
-	logger "  helmilog : helmiwrt.sh boot script running done!"
-	echo -e "  helmilog : helmiwrt.sh boot script running done!"
+if grep -q "cfwrt.sh" /boot/cfwrt.sh; then
+	logger "  cflog : terdeteksi boot script cfwrt.sh , Menjalankan skrip..."
+	echo -e "  cflog : terdeteksi boot script cfwrt.sh , Menjalankan skrip..."
+	chmod +x /boot/cfwrt.sh
+	./boot/cfwrt.sh
+	logger "  cflog : cfwrt.sh boot skrip selesai dijalankan!"
+	echo -e "  cflog : cfwrt.sh boot skrip selesai dijalankan!"
 fi
 
 # Disable etc/config/xmm-modem on boot first
 if [[ -f /etc/config/xmm-modem ]]; then
-	logger "  helmilog : detected helmiwrt.sh boot script, running script..."
-	echo -e "  helmilog : detected helmiwrt.sh boot script, running script..."
+	logger "  cflog : terdeteksi boot script xmm-modem , Menjalankan skrip..."
+	echo -e "  cflog : terdeteksi boot script xmm-modem , Menjalankan skrip..."
 	sed -i "s#option enable.*#option enable '0'#g" /etc/config/xmm-modem
-	logger "  helmilog : helmiwrt.sh boot script running done!"
-	echo -e "  helmilog : helmiwrt.sh boot script running done!"
+	logger "  cflog : xmm-modem boot skrip selesai dijalankan!"
+	echo -e "  cflog : xmm-modem boot skrip selesai dijalankan!"
 fi
 
 # Set Custom TTL
@@ -215,7 +215,7 @@ touch /root/akun/ipmodem.txt
 chmod +x /bin/kopijahe
 
 #-----------------------------------------------------------------------------
-#   Start of @helmiau additionals menu
+#   Start of @cr4r additionals menu
 #-----------------------------------------------------------------------------
 
 exit 0

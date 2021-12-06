@@ -18,13 +18,13 @@ INFO="[${Green_font_prefix}INFO${Font_color_suffix}]"
 ERROR="[${Red_font_prefix}ERROR${Font_color_suffix}]"
 
 Welcome(){
-    echo -e "${Green_font_prefix}\nThis tool can help you install IPV6 modules on OpenWrt.\n${Font_color_suffix}"
-    echo -e "Usage:"
+    echo -e "${Green_font_prefix}\nAlat ini dapat membantu Anda menginstal modul IPV6 di OpenWrt.\n${Font_color_suffix}"
+    echo -e "Penggunaan:"
     echo -e "ipv6-helper sub-command"
-    echo -e "Example:"
+    echo -e "Contoh:"
     echo -e "\tipv6-helper install: Install ipv6-helper & IPV6 modules"
     echo -e "\tipv6-helper remove: Remove ipv6-helper & IPV6 modules\n"
-    echo -e "Optional Usage:"
+    echo -e "Opsi Penggunaan:"
     echo -e "\tipv6-helper server: Set IPV6 configuration to server mode"
     echo -e "\tipv6-helper relay: Set IPV6 configuration to relay mode"
     echo -e "\tipv6-helper hybrid: Set IPV6 configuration to hybrid mode"
@@ -32,21 +32,21 @@ Welcome(){
 }
 
 RebootConfirm(){
-    echo -n -e "${Green_font_prefix}Need reboot, reboot now [y/N] (default N)? ${Font_color_suffix}" 
+    echo -n -e "${Green_font_prefix}Reboot diperlukan, reboot sekarang [y/N] (default N)? ${Font_color_suffix}" 
     read answer
         case $answer in
             Y | y)
-            echo -e "Rebooting...\n" && reboot;;
+            echo -e "Memulai Ulang...\n" && reboot;;
             *)
-            echo -e "You can reboot later manually.\n";;
+            echo -e "Memulai Ulang manual nanti.\n";;
         esac
 }
 
 CheckInstall(){
     if [ ! -f "/etc/opkg/ipv6-installed" ];then
-        echo -e "${Red_background_prefix}\nYou shoud execute 'ipv6-helper install' first.\n${Font_color_suffix}"
+        echo -e "${Red_background_prefix}\npertama kamu harus eksekusi 'ipv6-helper install'.\n${Font_color_suffix}"
     else
-        echo -e "${Green_font_prefix}\nConfiguring...\n${Font_color_suffix}"
+        echo -e "${Green_font_prefix}\nMengkonfigurasi...\n${Font_color_suffix}"
     fi
 }
 
@@ -54,11 +54,11 @@ if [ $# == 0 ];then
     Welcome
 
 elif [[ $1 = "install" ]]; then
-    echo -e "${Green_font_prefix}\nInstalling IPV6 modules...\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}\nMenginstall module IPV6...\n${Font_color_suffix}"
     cd /www/ipv6-modules
     opkg install *.ipk
-    echo -e "${Green_font_prefix}\nIPV6 modules install successfully.\n${Font_color_suffix}"
-    echo -e "${Green_font_prefix}Configuring IPV6...\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}\nInstall modules IPV6 sukses.\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}Mengkonfigurasi IPV6...\n${Font_color_suffix}"
     
     # Set server to lan
     uci set dhcp.lan.dhcpv6=server
@@ -93,7 +93,7 @@ elif [[ $1 = "install" ]]; then
     
     touch /etc/opkg/ipv6-installed
     
-    echo -e "${Green_font_prefix}IPV6 configure successfully.\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}Konfigurasi IPV6 sukses.\n${Font_color_suffix}"
     
     RebootConfirm
     
@@ -118,7 +118,7 @@ elif [[ $1 = "server" ]]; then
     # Commit changes
     uci commit
     
-    echo -e "${Green_font_prefix}Server mode configure successfully.\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}Mode server sukses dikonfigurasi.\n${Font_color_suffix}"
     
     RebootConfirm
     
@@ -142,7 +142,7 @@ elif [[ $1 = "relay" ]]; then
     # Commit changes
     uci commit
     
-    echo -e "${Green_font_prefix}Relay mode configure successfully.\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}Mode relay sukses dikonfigurasi.\n${Font_color_suffix}"
     
     RebootConfirm
     
@@ -167,15 +167,15 @@ elif [[ $1 = "hybrid" ]]; then
     # Commit changes
     uci commit
     
-    echo -e "${Green_font_prefix}Hybrid mode configure successfully.\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}Mode hybrid sukses dikonfigurasi.\n${Font_color_suffix}"
     
     RebootConfirm
     
 elif [[ $1 = "remove" ]]; then
-    echo -e "${Green_font_prefix}\nRemove IPV6 modules...\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}\nMenghapus modules IPV6...\n${Font_color_suffix}"
     opkg remove --force-removal-of-dependent-packages ipv6helper kmod-sit odhcp6c luci-proto-ipv6 ip6tables kmod-ipt-nat6 odhcpd-ipv6only kmod-ip6tables-extra
-    echo -e "${Green_font_prefix}\nIPV6 modules remove successfully.\n${Font_color_suffix}"
-    echo -e "${Green_font_prefix}Revert IPV6 configurations...\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}\nMenghapus modules IPV6 sukses.\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}Menghapus konfigurasi IPV6...\n${Font_color_suffix}"
     
     # Remove wan6 dhcp configurations
     uci delete dhcp.wan6.ra
@@ -207,14 +207,14 @@ elif [[ $1 = "remove" ]]; then
     
     rm -f /etc/opkg/ipv6-installed
     
-    echo -e "${Green_font_prefix}IPV6 remove successfully.\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}Menghapus konfigurasi IPV6 sukses.\n${Font_color_suffix}"
     
     RebootConfirm
     
 elif [[ $1 = "clean" ]]; then
-    echo -e "${Green_font_prefix}\nRemove mwan3 modules...\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}\nMenghapus modules mwan3...\n${Font_color_suffix}"
     opkg remove mwan3 luci-app-mwan3 luci-app-mwan3helper luci-app-syncdial
-    echo -e "${Green_font_prefix}Mwan3 modules remove successfully.\n${Font_color_suffix}"
+    echo -e "${Green_font_prefix}Menghapus modules mwan3 sukses.\n${Font_color_suffix}"
     
     RebootConfirm
     

@@ -5,7 +5,7 @@
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT
-# Author: Helmi Amirudin <https://www.helmiau.com>
+# Author: CR4R <https://coders-family.me>
 #=================================================
 
 #=================================================
@@ -21,28 +21,28 @@
 # Add v2ray-core for v2rayA build
 VAETCBIN="files/etc/v2raya/bin"
 VUSRSHARE="files/usr/share/v2ray"
-echo -e "${G}  Installing v2ray core by v2fly...."
-echo -e "${G}  Architecture detected : ${R}$1....${Y}"
+echo -e "${G}  Install v2ray core by v2fly...."
+echo -e "${G}  Terdeteksi Arsitektur : ${R}$1....${Y}"
 # Check etc/v2raya/bin directory
 if [[ ! -d $VAETCBIN ]]; then
 	mkdir -p $VAETCBIN
 fi
 
 version=$(curl -s https://api.github.com/repos/v2fly/v2ray-core/releases | jq -r .[].tag_name | head -1)
-echo -e "  Downloading v2ray-linux-$1, installing...."
+echo -e "  Mendownload v2ray-linux-$1, dan Menginstall...."
 wget --show-progress -qO $VAETCBIN/v2ray-core.zip "https://github.com/v2fly/v2ray-core/releases/download/$version/v2ray-linux-$1.zip"
 
 #Check size v2ray-core.zip then symlink and set permissions
 if [[ -s $VAETCBIN ]]; then
-	echo -e "  $VABIN downloaded, installing...."
+	echo -e "  $VABIN terdownload, installing...."
 	unzip -d $VAETCBIN $VAETCBIN/v2ray-core.zip
 	find $VAETCBIN -type f -name '*.json' -exec rm $VAETCBIN/*.json \;
 	find $VAETCBIN -type f -name '*.dat' -exec rm $VAETCBIN/*.dat \;
 	find $VAETCBIN -type f -name '*.zip' -exec rm $VAETCBIN/*.zip \;
 	rm -rf $VAETCBIN/systemd
-	echo -e "${G}  v2ray core by v2fly installed....${N}"
+	echo -e "${G}  v2ray core by v2fly terinstall....${N}"
 else
-	echo -e "${R}  v2ray core by v2fly install failed....${N}"
+	echo -e "${R}  v2ray core by v2fly gagal terinstall....${N}"
 fi
 # Check usr/bin/v2raya directory
 if [[ ! -d $VUSRSHARE ]]; then
@@ -55,7 +55,7 @@ if [[ -d $VUSRSHARE ]]; then
 	wget -O $VUSRSHARE/geoip.dat $VARULES/geoip.dat
 	wget -O $VUSRSHARE/LoyalsoldierSite.dat $VARULES/geosite.dat
 else
-	echo -e "${R}  v2ray core by v2fly install failed....${N}"
+	echo -e "${R}  v2ray core by v2fly gagal di install....${N}"
 fi
 
 chmod +x $VAETCBIN/* $VUSRSHARE

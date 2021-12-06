@@ -1,7 +1,7 @@
 #!/bin/bash
 #=================================================
-# File name: helmiwrt.sh
-# Information: HelmiWrt OS custom script which run on first/initial boot
+# File name: cfwrt.sh
+# Information: CF-WRT OS custom script which run on first/initial boot
 # Version: 1.0
 # Author: Helmi Amirudin <https://www.helmiau.com>
 #=================================================
@@ -13,7 +13,7 @@
 # Type your commands/scripts below
 # Tulis informasi perintah dengan menggunakan contoh script dibawah ini
 #=================================================
-logger "  helmiwrt-bootlog : write your custom script information here !..."
+logger "  cfwrt-bootlog : write your custom script information here !..."
 
 #=================================================
 # Some custom commands/scripts for Modem Rakitan (spt. LT4220, DW5821E)
@@ -26,13 +26,13 @@ logger "  helmiwrt-bootlog : write your custom script information here !..."
 # Run your custom commands/scripts below
 # Tuliskan kustomisasi script yang ingin anda gunakan di awal boot dibawah ini
 #=================================================
-echo -e "  helmiwrt-bootlog : write your custom script information here !..."
+echo -e "  cfwrt-bootlog : write your custom script information here !..."
 
 #=================================================
 # Uninstall unused apps using sample script below / hapus aplikasi yang tidak digunakan dengan menggunakan beberapa contoh dari bawah ini
 #=================================================
-# - Download installed package list from https://github.com/helmiau/HelmiWrt-OS/releases
-# - Unduh daftar paket terinstal dari https://github.com/helmiau/HelmiWrt-OS/releases
+# - Download installed package list from https://github.com/cr4r/CF-WRTS/releases
+# - Unduh daftar paket terinstal dari https://github.com/cr4r/CF-WRTS/releases
 # opkg remove "package_name" # This line is only example / baris ini cuma contoh
 #
 # If you want to uninstall some packages, remove "#" symbol from first line

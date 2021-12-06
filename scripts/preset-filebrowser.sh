@@ -5,7 +5,7 @@
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT
-# Author: Helmi Amirudin <https://www.helmiau.com>
+# Author: CR4R <https://coders-family.me>
 #=================================================
 # Platform List Informations
 # Binary Name : linux-your_arch-filebrowser.tar.gz

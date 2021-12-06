@@ -5,27 +5,27 @@
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT
-# Author: Helmi Amirudin <https://www.helmiau.com>
+# Author: CR4R <https://coders-family.me>
 #=================================================
 
 INITSSR=/etc/init.d/shadowsocksr
 
 if [[ $1 = "restart" ]]; then
-	echo -e "Restarting ShadowSocksR+ Plus"
+	echo -e "Memulai Ulang ShadowSocksR+ Plus"
 	$INITSSR restart
 elif [[ $1 = "stop" ]]; then
-	echo -e "Stoping ShadowSocksR+ Plus"
+	echo -e "Memberhenti ShadowSocksR+ Plus"
 	$INITSSR stop
 elif [[ $1 = "start" ]]; then
-	echo -e "Starting ShadowSocksR+ Plus"
+	echo -e "Mulai ShadowSocksR+ Plus"
 	$INITSSR start
 else
-	echo -e "Welcome to ShadowSocksR+ Plus Shortscript !"
-	echo -e "Run one of commands below :"
+	echo -e "Selamat Datang di Script ShadowSocksR+ Plus !"
+	echo -e "Jalankan salah satu perintah dibawah ini :"
 	echo -e " "
-	echo -e "ssr start : To start ShadowSocksR+ Plus"
-	echo -e "ssr stop : To stop ShadowSocksR+ Plus"
-	echo -e "ssr restart : To restart ShadowSocksR+ Plus"
+	echo -e "ssr start : Untuk Memulai ShadowSocksR+ Plus"
+	echo -e "ssr stop : Untuk Berhentikan ShadowSocksR+ Plus"
+	echo -e "ssr restart : Untuk Memulai Ulang ShadowSocksR+ Plus"
 	echo -e " "
-	echo -e "Script by Helmi Amirudin (helmiau.com)"
+	echo -e "Script dari cr4r (coders-family.me)"
 fi

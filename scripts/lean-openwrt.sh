@@ -57,7 +57,7 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config
 rm -rf ../lean/luci-theme-argon
 
 #-----------------------------------------------------------------------------
-#   Start of @helmiau additionals packages for cloning repo 
+#   Start of @cr4r additionals packages for cloning repo 
 #-----------------------------------------------------------------------------
 
 # Add modeminfo
@@ -81,9 +81,9 @@ git clone --depth=1 https://github.com/4IceG/luci-app-sms-tool
 # Add luci-app-atinout-mod
 git clone --depth=1 https://github.com/4IceG/luci-app-atinout-mod
 
-# HelmiWrt packages
-git clone --depth=1 https://github.com/helmiau/helmiwrt-packages
-rm -rf helmiwrt-packages/luci-app-v2raya
+# cfwrt packages
+git clone --depth=1 https://github.com/cr4r/cf-wrt-packages
+rm -rf cf-wrt-packages/luci-app-v2raya
 
 # Add themes from kenzok8 openwrt-packages
 svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-theme-atmaterial_new kenzok8/luci-theme-atmaterial_new
@@ -103,7 +103,7 @@ git clone --depth=1 https://github.com/ophub/luci-app-amlogic
 git clone --depth=1 https://github.com/zxlhhyccc/luci-app-v2raya
 
 #-----------------------------------------------------------------------------
-#   End of @helmiau additionals packages for cloning repo 
+#   End of @cr4r additionals packages for cloning repo 
 #-----------------------------------------------------------------------------
 
 # Add luci-app-oled (R2S Only)
@@ -118,7 +118,7 @@ svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/pa
 
 popd
 
-# Mod zzz-default-settings for HelmiWrt
+# Mod zzz-default-settings for CF-WRT
 pushd package/lean/default-settings/files
 sed -i '/http/d' zzz-default-settings
 sed -i '/18.06/d' zzz-default-settings
@@ -126,7 +126,7 @@ export orig_version=$(cat "zzz-default-settings" | grep DISTRIB_REVISION= | awk 
 export date_version=$(date -d "$(rdate -n -4 -p pool.ntp.org)" +'%Y-%m-%d')
 sed -i "s/${orig_version}/${orig_version} ${date_version}/g" zzz-default-settings
 sed -i "s/zh_cn/auto/g" zzz-default-settings
-sed -i "s/uci set system.@system[0].timezone=CST-8/uci set system.@system[0].hostname=HelmiWrt\nuci set system.@system[0].timezone=WIB-7/g" zzz-default-settings
+sed -i "s/uci set system.@system[0].timezone=CST-8/uci set system.@system[0].hostname=CFWRT\nuci set system.@system[0].timezone=WIB-7/g" zzz-default-settings
 sed -i "s/Shanghai/Jakarta/g" zzz-default-settings
 popd
 
@@ -139,7 +139,7 @@ popd
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' $HWOSDIR/etc/passwd
 
 #-----------------------------------------------------------------------------
-#   Start of @helmiau terminal scripts additionals menu
+#   Start of @cr4r terminal scripts additionals menu
 #-----------------------------------------------------------------------------
 rawgit="https://raw.githubusercontent.com"
 
@@ -153,7 +153,7 @@ wget --show-progress -qO $HWOSDIR/bin/ram "$rawgit/wegare123/ram/main/ram.sh"
 
 # Add fix download file.php for xderm and libernet
 # run "fixphp" using terminal for use
-wget --show-progress -qO $HWOSDIR/bin/fixphp "$rawgit/helmiau/openwrt-config/main/fix-xderm-libernet-gui"
+wget --show-progress -qO $HWOSDIR/bin/fixphp "$rawgit/cr4r/openwrt-config/main/fix-xderm-libernet-gui"
 
 # Add wegare123 stl tools
 # run "stl" using terminal for use
@@ -171,5 +171,5 @@ wget --show-progress -qO $HWOSDIR/root/akun/inject.py "$rawgit/$usergit/stl/main
 wget --show-progress -qO $HWOSDIR/bin/kopijahe "$rawgit/kopijahe/wifiid-openwrt/master/scripts/kopijahe"
 
 #-----------------------------------------------------------------------------
-#   End of @helmiau terminal scripts additionals menu
+#   End of @cr4r terminal scripts additionals menu
 #-----------------------------------------------------------------------------

@@ -5,7 +5,7 @@
 # System Required: Linux
 # Version: 1.0
 # Lisence: MIT
-# Author: SuLingGG, Helmi Amirudin
+# Author: Coders-Family
 # Blog: https://mlapp.cn
 #=================================================
 

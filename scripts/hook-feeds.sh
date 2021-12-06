@@ -5,7 +5,7 @@
 # Blog: https://mlapp.cn
 #=================================================
 #--------------------------------------------------------
-#   If you use some codes frome here, please give credit to www.helmiau.com
+#   If you use some codes frome here, please give credit to https://github.com/cr4r/
 #--------------------------------------------------------
 
 # Clone Lean's feeds
