@@ -16,7 +16,7 @@ on:
 #    types: started
 
 env:
-  REPO_URL: https://github.com/radityabh/amlogic-s9xxx-openwrt
+  REPO_URL: https://github.com/cr4r/amlogic-s9xxx-openwrt
   REPO_BRANCH: main
   CFWRT_REL: https://github.com/cr4r/CF-WRT/releases/download/cfwrt
   CFWRT_FILENAME: cfwrt-bcm27xx-bcm2710-rpi-3-rootfs.tar.gz
@@ -32,7 +32,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Initialization environment
+    - name: Initial Environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -60,7 +60,7 @@ jobs:
         cd openwrt
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
         
-    - name: Repacking CFWrt firmware
+    - name: Repacking firmware CF-WRT
       id: build
       run: |
         cd $OPENWRTROOT
