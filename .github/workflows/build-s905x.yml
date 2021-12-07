@@ -51,7 +51,7 @@ jobs:
       run: |
         df -hT $PWD
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        sed -i '/CFWrt_/c\ build_image_file="${out_path}/cfwrt-\${build_op}-k\${kernel}.img"' openwrt/makeCF
+        sed -i '/CFWrt_/c\ build_image_file="${out_path}/cfwrt-\${build_op}-k\${kernel}.img"' openwrt/makeCFWRT
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
     - name: Install Feeds
