@@ -1,9 +1,9 @@
 #=================================================
 # https://github.com/P3TERX/Actions-OpenWrt
-# Description: Repack CF WRT for s905x devices using GitHub Actions
+# Description: Repack CfWRT OS for s905x devices using GitHub Actions
 # Lisence: MIT
 # Repacker : Raditya Budi Handoko <https://github.com/radityabh>
-# CFWRT OS by coders-family.me   
+# CfWRT OS by helmiau.com   
 #=================================================
 
 name: Build s9xxx
@@ -32,7 +32,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Initial Environment
+    - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -51,7 +51,7 @@ jobs:
       run: |
         df -hT $PWD
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        sed -i '/CFWrt_/c\ build_image_file="${out_path}/cfwrt-\${build_op}-k\${kernel}.img"' openwrt/makeCFWRT
+        sed -i '/CFWRT_/c\ build_image_file="${out_path}/cfwrt-\${build_op}-k\${kernel}.img"' openwrt/makeCFWRT
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         
     - name: Install Feeds
@@ -60,7 +60,7 @@ jobs:
         cd openwrt
         echo "OPENWRTROOT=$PWD" >> $GITHUB_ENV
         
-    - name: Repacking firmware CF-WRT
+    - name: Repacking CFWRT firmware
       id: build
       run: |
         cd $OPENWRTROOT
@@ -112,14 +112,13 @@ jobs:
         echo "PACKAGED_OUTPUTDATE=$(date +"%Y.%m.%d")" >> $GITHUB_ENV
         find . -type f -name '$CFWRT_FILENAME' -exec rm "{}" \;
         echo "::set-output name=status::success"
-
     - name: Upload Firmware Files to GitHub Release
       uses: ncipollo/release-action@v1
       if: steps.build.outputs.status == 'success' && !cancelled()
       with:
         allowUpdates: true
         token: ${{ secrets.CFWRT_RW }}
-        name: CFWrt ${{ env.BUILD_TAG }}
+        name: CFWRT ${{ env.BUILD_TAG }}
         tag: cfwrt-${{ env.BUILD_TAG }}
         artifacts: ${{ env.PACKAGED_OUTPUTPATH }}/cfwrt-s9*
 
